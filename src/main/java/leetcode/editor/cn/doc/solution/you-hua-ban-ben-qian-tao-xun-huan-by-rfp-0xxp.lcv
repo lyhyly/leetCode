@@ -1,0 +1,36 @@
+### 解题思路
+
+执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户
+内存消耗：43.8 MB, 在所有 Java 提交中击败了90.42%的用户
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    public boolean findNumberIn2DArray(int[][] matrix, int target) {
+        int oneLength = matrix.length;
+        if(oneLength == 0)
+            return false;
+        int twoLength = matrix[0].length;
+        if(twoLength == 0)
+            return false;
+        
+        for(int i = 0; i < oneLength; i++){
+            if(matrix[i][0] > target) break;
+            for(int j = 0; j < twoLength; j++){
+                if(matrix[i][j] == target){
+                    return true;
+                }else if(matrix[i][j] > target){
+                    twoLength = j;//优化此处让内部循环可以减少，原因是既然小于当前数，那么当前数下面的数也不用再去判断一遍了
+                    break;
+                }
+            }
+        }
+
+        return false;
+    }
+}
+```
+
